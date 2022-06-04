@@ -16,7 +16,7 @@ namespace Album.Api.Tests
 
             //name test
             value = "test";
-            Assert.Equals("test", name);
+            Assert.Equals("Hello test", name);
 
             //white space test
             value = " ";

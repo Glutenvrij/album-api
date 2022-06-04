@@ -14,7 +14,7 @@ namespace Album.Api.Services
             }
             else
             {
-                var model = new HelloModel(name);
+                var model = new HelloModel("Hello " + name);
                 return model.Name;
             }
         }
