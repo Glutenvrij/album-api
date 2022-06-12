@@ -8,7 +8,7 @@ namespace Album.Api.Services
     {
         public string GetName(string name)
         {
-            if ( String.IsNullOrEmpty(name ) ) {
+            if ( String.IsNullOrEmpty(name ) || String.IsNullOrWhiteSpace(name)) {
                 var model = new HelloModel("Hello World");
                 return model.Name;
             }
