@@ -54,7 +54,8 @@ jobs:
       with:
         task-definition: task-definition.json
         container-name: AlbumContainer
-        image: 537734144164.dkr.ecr.us-east-1.amazonaws.com/cnsd/album:${{github.run_number}}
+        #image: 537734144164.dkr.ecr.us-east-1.amazonaws.com/cnsd/album:${{github.run_number}}
+        image: 537734144164.dkr.ecr.us-east-1.amazonaws.com/cnsd/album:latest
 
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
@@ -63,4 +64,5 @@ jobs:
         service: AlbumServiceBlueGreen
         cluster: AlbumCluster
         wait-for-service-stability: true
-        codedeploy-appspec: ./Album-Api/appspec.yaml
+        codedeploy-appspec: ./Album.Api/appspec.yml
+        codedeploy-application: AppECS-AlbumCluster-AlbumServiceBlueGreen
