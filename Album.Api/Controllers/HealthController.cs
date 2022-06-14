@@ -23,9 +23,13 @@ namespace Album.Api.Controllers
         [HttpGet]
         public ActionResult<string> Index()
         {
-            return null;
+            return Ok();
         }
 
+        public IActionResult health()
+        {
+            return Ok();
+        }
     }
 
 }
