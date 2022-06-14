@@ -28,6 +28,7 @@ namespace Album.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddHealthChecks();
 
             //configure DbContext postgresql
             //services.AddDbContext<AppDbContext>(options => options.UseNpgsql(ConnectionString)); //db string reference
@@ -79,6 +80,7 @@ namespace Album.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHealthChecks("/health");
                 //endpoints.MapHealthChecks("/health");
             });
 

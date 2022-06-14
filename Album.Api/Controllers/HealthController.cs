@@ -7,7 +7,7 @@ using System;
 namespace Album.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class HealthController : ControllerBase
     {
         private readonly GreetingService _service;
