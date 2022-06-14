@@ -63,4 +63,4 @@ jobs:
         service: AlbumServiceBlueGreen
         cluster: AlbumCluster
         wait-for-service-stability: true
-        codedeploy-appspec: ./Album-Api/appspec.yaml
+        codedeploy-appspec: ../appspec.yaml
