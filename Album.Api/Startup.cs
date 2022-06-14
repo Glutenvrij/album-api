@@ -2,31 +2,26 @@ using Album.Api.Database;
 using Album.Api.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.AspNetCore.Identity;
 
 namespace Album.Api
 {
     public class Startup
     {
-        public string ConnectionString { get; set; }//db string
+        //public string ConnectionString { get; set; }//db string
 
   
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            ConnectionString = Configuration.GetConnectionString("DefaultConnection");//db string initilize
+            //ConnectionString = Configuration.GetConnectionString("DefaultConnection");//db string initilize
         }
 
         public IConfiguration Configuration { get; }
@@ -35,14 +30,14 @@ namespace Album.Api
             services.AddControllers();
 
             //configure DbContext postgresql
-            services.AddDbContext<AppDbContext>(options => options.UseNpgsql(ConnectionString)); //db string reference
+            //services.AddDbContext<AppDbContext>(options => options.UseNpgsql(ConnectionString)); //db string reference
 
-   /*         IConfigurationRoot configuration = new ConfigurationBuilder()
+            IConfigurationRoot configuration = new ConfigurationBuilder()
                                                 .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
                                                 .AddJsonFile("appsettings.json")
                                                 .Build();
-            services.AddDbContext<Context>(opt =>
-                                               opt.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));*/
+            services.AddDbContext<AppDbContext>(options =>
+                                               options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
 
 
             // inject all repositories that extend ServiceBase            
@@ -84,7 +79,7 @@ namespace Album.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHealthChecks("/health");
+                //endpoints.MapHealthChecks("/health");
             });
 
             /*      app.UseEndpoints(endpoints =>
