@@ -1,5 +1,6 @@
 ﻿using Album.Api.Models;
 using System;
+using System.Net;
 
 namespace Album.Api.Services
 {
@@ -8,15 +9,16 @@ namespace Album.Api.Services
     {
         public string GetName(string name)
         {
+            string version = "v2";
+            var model = new HelloModel($"Hello {name}");
+
+            //check if null or empty, change value if
             if ( String.IsNullOrEmpty(name ) || String.IsNullOrWhiteSpace(name)) {
-                var model = new HelloModel("Hello World");
-                return model.Name;
+                model = new HelloModel("Hello World");
             }
-            else
-            {
-                var model = new HelloModel("Hello " + name);
-                return model.Name;
-            }
+
+            //return value from model
+            return $"{model.Name} - {Dns.GetHostName()} - {version}";
         }
 
 

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Album.Api.Services
 {
-    public class ServiceBase
+    public class ServiceBase //base class to generate services
     {
     }
 }
