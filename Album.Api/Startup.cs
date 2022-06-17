@@ -27,6 +27,15 @@ namespace Album.Api
         public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("cors-policy",
+                    builder => builder
+                    .AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod());
+            });
+
             services.AddControllers();
             services.AddHealthChecks();
 
@@ -64,10 +73,18 @@ namespace Album.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+            app.UseCors("cors-policy");
+
+            app.UseHttpsRedirection();
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            
 
             app.UseRouting();
 
@@ -83,14 +100,6 @@ namespace Album.Api
                 endpoints.MapHealthChecks("/health");
                 //endpoints.MapHealthChecks("/health");
             });
-
-            /*      app.UseEndpoints(endpoints =>
-                  {
-                      endpoints.MapGet("/", async context =>
-                      {
-                          await context.Response.WriteAsync("Hello World!");
-                      });
-                  });*/
         }
     }
 }

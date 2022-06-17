@@ -6,11 +6,13 @@ using Album.Api.Models;
 using Album.Api.Database;
 using Album.Api.Services;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Cors;
 
 namespace Album.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("cors-policy")]
     public class AlbumController : ControllerBase
     {
         private readonly AlbumService _service;
@@ -25,6 +27,7 @@ namespace Album.Api.Controllers
         }
 
         // GET: api/Album
+        [EnableCors("cors-policy")]
         [HttpGet]
         public ActionResult<IEnumerable<AlbumModel>> GetAlbums()
         {
@@ -41,6 +44,7 @@ namespace Album.Api.Controllers
         }
 
         // GET: api/Album/5
+        [EnableCors("cors-policy")]
         [HttpGet("{id}")]
         public ActionResult<AlbumModel> GetAlbum(int id)
         {
@@ -54,7 +58,8 @@ namespace Album.Api.Controllers
             return album;
         }
 
-        // PUT: api/Album/put/5
+        // PUT: api/Album/update/5
+        [EnableCors("cors-policy")]
         [HttpPut("update/{id}")]
         public IActionResult UpdateAlbum(int id, AlbumModel album)
         {
@@ -67,7 +72,8 @@ namespace Album.Api.Controllers
             return NoContent();
         }
 
-        // POST: api/Album/post
+        // POST: api/Album/create
+        [EnableCors("cors-policy")]
         [HttpPost("create/{album}")]
         public ActionResult<AlbumModel> SaveAlbum(AlbumModel album)
         {
@@ -77,6 +83,7 @@ namespace Album.Api.Controllers
         }
 
         // DELETE: api/Album/delete/5
+        [EnableCors("cors-policy")]
         [HttpDelete("delete/{id}")]
         public IActionResult DeleteAlbum(int id)
         {
