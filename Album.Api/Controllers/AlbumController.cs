@@ -10,9 +10,9 @@ using Microsoft.AspNetCore.Cors;
 
 namespace Album.Api.Controllers
 {
+    [EnableCors("cors-policy")]
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors("cors-policy")]
     public class AlbumController : ControllerBase
     {
         private readonly AlbumService _service;

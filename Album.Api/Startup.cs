@@ -17,7 +17,7 @@ namespace Album.Api
     {
         //public string ConnectionString { get; set; }//db string
 
-  
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -33,7 +33,8 @@ namespace Album.Api
                     builder => builder
                     .AllowAnyOrigin()
                     .AllowAnyHeader()
-                    .AllowAnyMethod());
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
             });
 
             services.AddControllers();
@@ -73,6 +74,7 @@ namespace Album.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseRouting();
 
             app.UseCors("cors-policy");
 
@@ -86,14 +88,16 @@ namespace Album.Api
 
             
 
-            app.UseRouting();
+            //app.UseRouting();
 
-/*            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "api/{controller=HelloController}/{action=Index}/{id?}");
-            });*/
+            /*            app.UseEndpoints(endpoints =>
+                        {
+                            endpoints.MapControllerRoute(
+                                name: "default",
+                                pattern: "api/{controller=HelloController}/{action=Index}/{id?}");
+                        });*/
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
