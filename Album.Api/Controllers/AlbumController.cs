@@ -60,7 +60,7 @@ namespace Album.Api.Controllers
 
         // PUT: api/Album/update/5
         [EnableCors("cors-policy")]
-        [HttpPut("update/{id}")]
+        [HttpPut("put/{id}")]
         public IActionResult UpdateAlbum(int id, AlbumModel album)
         {
             if (id != album.Id)
@@ -74,7 +74,7 @@ namespace Album.Api.Controllers
 
         // POST: api/Album/create
         [EnableCors("cors-policy")]
-        [HttpPost("create/{album}")]
+        [HttpPost("post/{album}")]
         public ActionResult<AlbumModel> SaveAlbum(AlbumModel album)
         {
             _service.CreateAlbum(album);
